@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head> 
+    {% load static %}    
+    {% block title %}
+    <a><title>Последние обновления на сайте</title></a>
+    {% endblock %}
+  </head>
+  <body>
+    <header>      
+    </header>
+    <main> 
+      {% block content %}
+      <div class="container py-5">     
+        <h1>Последние обновления на сайте</h1>
+        <article>
+          
+          {% for book in page_obj %}
+            <ul>
+              <li>
+                Автор: {{ book.author.username }}<br>
+              </li>
+              <li>
+                Дата публикации: {{ book.pub_date|date:"d E Y" }}
+              </li>
+            </ul>
+            <p>Название: {{ book.name }}
+            <a href="{% url 'books:book_detail' book.id %}">
+                Подробнее
+              </a></p>
+          {% endfor %}
+        </article>
+      </div>
+        {% comment %} {% include 'posts/includes/paginator.html' %} {% endcomment %}
+      {% endblock %}  
+    </main>         
+    <footer class="border-top text-center py-3">   
+    </footer>
+  </body>

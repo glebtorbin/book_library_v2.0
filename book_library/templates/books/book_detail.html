@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="ru"> 
+  <head>  
+    {% block title %}
+    <a><title> {{ book.name|truncatechars:30 }}</title></a>
+    {% endblock %}
+  </head>
+  <body>
+    {% block content %}       
+    <main>
+      <div class="row">
+        <aside class="col-12 col-md-3">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              Дата публикации: {{ book.pub_date|date:"d E Y"}} 
+            </li>
+              </li>
+              <li class="list-group-item">
+                Автор: {{ book.author.username }}
+              </li>
+          </ul>
+        </aside>
+        <article class="col-12 col-md-9">
+          <p>
+            <br>
+            <br>
+           {{ book.name }}
+           <br>
+           <br>
+          </p>
+        </article>
+      </div> 
+    </main>
+    {% endblock %}
+  </body>
+</html>
