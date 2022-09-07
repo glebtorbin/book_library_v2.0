@@ -36,4 +36,4 @@ def book_create(request):
             return redirect('books:index')
     else:
         form = BookForm()
-    return render(request, 'posts/create_post.html', {'form': form})
+    return render(request, 'books/create_book.html', {'form': form})
