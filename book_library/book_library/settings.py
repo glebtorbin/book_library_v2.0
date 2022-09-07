@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'books',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -38,6 +39,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+LOGIN_URL = 'users:login'
+LOGIN_REDIRECT_URL = 'books:index'
 
 ROOT_URLCONF = 'book_library.urls'
 
