@@ -5,16 +5,32 @@
       <a class="navbar-brand" href="{% url 'books:index' %}">
         <span style="color:purple">Book</span>Lib
       </a>
-      <li class="nav-item"> 
-        <a class="nav-link">Новая книга</a>
-      </li>
+      {% with request.resolver_match.view_name as view_name %}
+      <ul class="nav nav-pills">
+        {% if request.user.is_authenticated %}
         <li class="nav-item"> 
-          <a class="nav-link link-light">Войти</a>
+          <a class="nav-link {% if view_name  == 'books:book_create' %}active{% endif %}"
+           href="{% url 'books:book_create' %}">Новая книга</a>
         </li>
         <li class="nav-item"> 
-          <a class="nav-link link-light">Регистрация</a>
+          <a class="nav-link link-light {% if view_name  == 'users:logout' %}active{% endif %}"
+          href="{% url 'users:logout' %}">Выйти</a>
         </li>
+        <li>
+          Пользователь: {{ user.username }}
+        </li>
+        {% else %}
+        <li class="nav-item"> 
+          <a class="nav-link link-light {% if view_name  == 'users:login' %}active{% endif %}"
+          href="{% url 'users:login' %}">Войти</a>
+        </li>
+        <li class="nav-item"> 
+          <a class="nav-link link-light {% if view_name  == 'users:signup' %}active{% endif %}"
+          href="{% url 'users:signup' %}">Регистрация</a>
+        </li>
+        {% endif %}
+        {% endwith %}
       </ul>
     </div>
   </nav>      
-</header>  
+</header>   

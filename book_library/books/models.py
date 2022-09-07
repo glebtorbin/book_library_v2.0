@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class Book(models.Model):
-    name = models.TextField('Название книги',
+    name = models.CharField('Название книги', max_length=250,
                             help_text='Введите название книги')
     pub_date = models.DateTimeField('Дата публикации',
                                     auto_now_add=True)

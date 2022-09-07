@@ -17,7 +17,7 @@ def index(request):
     }
     return render(request, 'books/index.html', context)
 
-
+@login_required
 def book_detail(request, book_id):
     book = Book.objects.get(id=book_id)
     context = {
@@ -25,6 +25,7 @@ def book_detail(request, book_id):
     }
     return render(request, 'books/book_detail.html', context)
 
+@login_required
 def book_create(request):
     if request.method == "POST":
         form = BookForm(request.POST or None,
